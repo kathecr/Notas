@@ -246,3 +246,26 @@ npm install react react-dom
 
 ## Agregando compatibilidad con todos los navegadores usando Babel
 
+Babel es una herramienta que permite usar JS moderno y transformarlo a JS que sea compatible con todos los navegadores.
+
+Instalación de _babel_ y guardado como dependencia de desarrollo
+
+```jsx
+ npm install @babel/core babel-loader @babel/preset-env @babel/preset-react --save-dev
+```
+
+* babel/core: incluye todas las herramientas para transformar el JS moderno 
+* babel-loader: encargado de trabajar con webpack
+* presets: ayuda a entender nuestro código en este caso de JS \(env\) y de React \(react\)
+
+Creamos un archivo llamado _**.babelrc**_ y establecemos la configuración según las dependencias que elegimos instalar previament
+
+```jsx
+//.babelrc
+{
+  "presets": ["@babel/preset-env","@babel/preset-react"]
+}
+```
+
+
+
