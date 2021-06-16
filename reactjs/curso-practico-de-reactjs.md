@@ -12,7 +12,7 @@
 
 ## DOM, Virtual DOM y React DOM
 
-#### **¿Qué es el Virtual DOM?** 
+#### **¿Qué es el Virtual DOM?**
 
 Es una herramienta que usar ReactJS para darle _**performance y velocidad**_ a nuestro desarrollo, por lo cuál nosotros tenemos una copia fiel de lo que es el DOM, lo cual permite identificar que elementos han sido actualizados y refrescar el boque actualizado, sin necesidad de refrescar toda la vista como sucedería normalmente.
 
@@ -20,7 +20,7 @@ Es una herramienta que usar ReactJS para darle _**performance y velocidad**_ a n
 
 ## Create React App
 
-_**Create React App**_ es un modulo que nos genera un proyecto con toda la configuración de ReactJS para empezar a trabajar inmediatamente. 
+_**Create React App**_ es un modulo que nos genera un proyecto con toda la configuración de ReactJS para empezar a trabajar inmediatamente.
 
 ### **Creación del proyecto**
 
@@ -72,7 +72,7 @@ class Stateful extends Component {
 export default Stateful;
 ```
 
-###  Componente  **Stateless**
+### Componente  **Stateless**
 
 No depende de tener un estado o ciclo de vida, solo presenta la lógica, son mas utilizados puesto que trabajan con la parte funcional.
 
@@ -222,7 +222,7 @@ git init
 {% endtab %}
 
 {% tab title="Paso 2" %}
-Inicializar proyecto 
+Inicializar proyecto
 
 ```jsx
 npm init -y
@@ -230,7 +230,7 @@ npm init -y
 {% endtab %}
 
 {% tab title="Paso 3" %}
-Implementamos  la configuración básica 
+Implementamos la configuración básica
 
 ![](../.gitbook/assets/image%20%285%29.png)
 {% endtab %}
@@ -266,6 +266,150 @@ Creamos un archivo llamado _**.babelrc**_ y establecemos la configuración segú
   "presets": ["@babel/preset-env","@babel/preset-react"]
 }
 ```
+
+## Webpack: 
+
+### Empaquetando nuestros módulos
+
+Webpack se encarga de que todos nuestro recursos de JS, HTML,CSS y multimedia los agrupa y los pone listos y optimizados para enviar a producción y crear este entorno de trabajo optimo.
+
+{% tabs %}
+{% tab title="Paso 1" %}
+Instalación de webpack y guardado como dependencia de desarrollo
+
+```jsx
+ npm install webpack webpack-cli html-webpack-plugin html-loader --save-dev
+```
+{% endtab %}
+
+{% tab title="Paso 2" %}
+Configuración del archivo maestro de configuración de webpack
+
+```jsx
+//webpack.config.js
+const path = require("path");
+const HtmlWebPackPlugin = require("html-webpack-plugin");
+module.exports = {
+  entry: "./src/index.js",
+  output: {
+    //directorio en el que guardaremos los archivos
+    path: path.resolve(__dirname, "dist"), 
+    //nombre del archivo principal
+    filename: "bundle.js",
+  },
+  resolve: {
+    extensions: [".js", ".jsx"],
+  },
+  //modulo con las reglas necesarias
+  module: {
+    rules: [
+      {
+        //identificación de los archivos js y jsx
+        test: /\.(js|jsx)$/,
+        //exclusion de la carpeta node_modules
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+        },
+      },
+      {
+        //Trabajar con los archivos html
+        test: /\.html$/,
+        use: [
+          {
+            loader: "html-loader",
+          },
+        ],
+      },
+    ],
+  },
+  plugins: [
+    new HtmlWebPackPlugin({
+      template: "./public/index.html",
+      filename: "./index.html",
+    }),
+  ],
+};
+```
+{% endtab %}
+
+{% tab title="Paso 3" %}
+Configuramos el script en el archivo de package.json
+
+```jsx
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    //Script de compilación
+    "build": "weppack --mode production"
+  },
+```
+{% endtab %}
+
+{% tab title="Paso 4" %}
+Compilamos el proyecto
+
+```jsx
+npm run build
+```
+{% endtab %}
+
+{% tab title="Paso 5" %}
+Visualizamos que se genero una nueva carpeta con la compilación del proyecto
+
+![](../.gitbook/assets/image%20%286%29.png)
+{% endtab %}
+{% endtabs %}
+
+### Dev Server: Reporte de errores y Cambios en tiempo real
+
+Esta herramienta nos permite editar y que de forma automática webpack compile el programa y poder probar los cambios al instante en nuestro entorno de desarrollo local.
+
+{% tabs %}
+{% tab title="Paso 1" %}
+Instalación de la dependencia que permite correr un entorno de desarrollo local
+
+```jsx
+npm install webpack-dev-server --save-dev
+```
+{% endtab %}
+
+{% tab title="Paso2" %}
+Creamos el script para correr nuestro entorno de desarrollo local
+
+```jsx
+//package.json
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode production",
+    "start":  "webpack serve --mode development --env development"
+  }
+```
+{% endtab %}
+
+{% tab title="Paso 3" %}
+Ejecutamos el script
+
+```jsx
+npm run start
+```
+{% endtab %}
+{% endtabs %}
+
+## Estilos con SASS
+
+{% tabs %}
+{% tab title="Paso 1" %}
+Instalación de las dependencias necesarias para trabajar con sass y guardado como dependencia de desarrollo
+
+```jsx
+npm install mini-css-extract-plugin css-loader node-sass sass-loader --save-dev
+```
+{% endtab %}
+
+{% tab title="Paso 2" %}
+Configuración del webpack.config.js con la nueva regla para que compile los archivos de css
+{% endtab %}
+{% endtabs %}
 
 
 
