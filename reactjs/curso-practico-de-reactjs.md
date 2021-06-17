@@ -407,9 +407,74 @@ npm install mini-css-extract-plugin css-loader node-sass sass-loader --save-dev
 {% endtab %}
 
 {% tab title="Paso 2" %}
-Configuración del webpack.config.js con la nueva regla para que compile los archivos de css
+Configuración del webpack.config.js con la nueva regla para que compile los archivos de css y añadimos el plugin
+
+```jsx
+//webpack.config.js
+test: /\.(s*)css$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          'css-loader',
+          'sass-loader'
+        ]
+/////////////
+plugins: [
+    new MiniCssExtractPlugin({
+      filename: "./assets/[name].css"
+    })
+]      
+C
+```
+{% endtab %}
+
+{% tab title="Paso 3" %}
+Creamos la carpeta assets/styles
+
+![](../.gitbook/assets/image%20%2811%29.png)
 {% endtab %}
 {% endtabs %}
 
+## Configuración final: ESLint y Git Ignore
 
+#### ESLint
+
+ESLint es una herramienta que nos ayuda a detectar de forma rapida bugs o typos, o ayudarnos a tener un estandar dentro de nuestro código
+
+{% tabs %}
+{% tab title="Paso 1" %}
+Instalación de los paquetes necesarios para usar ESLint
+
+```jsx
+npm install eslint babel-eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-react eslint-plugin-jsxa11y
+```
+{% endtab %}
+
+{% tab title="Paso 2" %}
+Añadimos el archivo de configuración de ESLint
+
+![](../.gitbook/assets/image%20%2810%29.png)
+{% endtab %}
+
+{% tab title="Paso 3" %}
+Sobreescribimos el archivo .eslintrc con la configuración de este [gist](https://gist.github.com/gndx/60ae8b1807263e3a55f790ed17c4c57a)
+{% endtab %}
+{% endtabs %}
+
+#### Git Ignore
+
+En el archivo .gitignore sobreescribimos con la configuración de este [gist](https://gist.github.com/gndx/747a8913d12e96ff8374e2125efde544)
+
+## Arquitectura de componentes para Platzi Video
+
+{% tabs %}
+{% tab title="First Tab" %}
+![](../.gitbook/assets/image%20%287%29.png)
+{% endtab %}
+
+{% tab title="Second Tab" %}
+![](../.gitbook/assets/image%20%289%29.png)
+{% endtab %}
+{% endtabs %}
 
