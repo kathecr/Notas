@@ -471,10 +471,90 @@ En el archivo .gitignore sobreescribimos con la configuración de este [gist](ht
 {% tabs %}
 {% tab title="First Tab" %}
 ![](../.gitbook/assets/image%20%287%29.png)
+
+## Estructura del Header
 {% endtab %}
 
 {% tab title="Second Tab" %}
 ![](../.gitbook/assets/image%20%289%29.png)
+{% endtab %}
+{% endtabs %}
+
+{% tabs %}
+{% tab title="Paso 1" %}
+En el componente Header
+
+```jsx
+//Header.jsx
+import React from "react";
+
+const Header = () => (
+  <header className="header">
+    <img
+      className="header__img"
+      src="../assets/logo-platzi-video-BW2.png"
+      alt="Platzi Video"
+    />
+    <div className="header__menu">
+      <div className="header__menu--profile">
+        <img src="../assets/user-icon.png" alt="" />
+        <p>Perfil</p>
+      </div>
+      <ul>
+        <li>
+          <a href="/">Cuenta</a>
+        </li>
+        <li>
+          <a href="/">Cerrar Sesión</a>
+        </li>
+      </ul>
+    </div>
+  </header>
+);
+
+export default Header;
+```
+{% endtab %}
+
+{% tab title="Paso 2" %}
+Creamos el archivo App.jsx para que funcione como contenedor de nuestra app
+
+![](../.gitbook/assets/image%20%2813%29.png)
+{% endtab %}
+
+{% tab title="Paso 3" %}
+```jsx
+//App.jsx
+import React from "react";
+import Header from "../components/Header"
+
+const App = ()=> (
+  <div className="App">
+    <Header/>
+  </div>
+)
+
+export default App
+```
+{% endtab %}
+
+{% tab title="Paso 4" %}
+Importamos la App al index.js
+
+```jsx
+//index.js
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./containers/App";
+
+ReactDOM.render(<App />, document.getElementById('app'));
+```
+{% endtab %}
+
+{% tab title="Paso 5" %}
+Creamos la siguiente estructura de archivos para los estilos de la aplicación
+
+![](../.gitbook/assets/image%20%2812%29.png)
 {% endtab %}
 {% endtabs %}
 
