@@ -1,5 +1,7 @@
 # Curso de Introducción a la Terminal y Linea de Comandos
 
+[Listado de comandos](https://static.platzi.com/media/public/uploads/command-line-cheat-sheet_f2552bde-3bb0-4b1c-a1a7-dbd40095fa4f.pdf)
+
 ## ¿Qué es la terminal? 
 
 Es una herramienta indispensable para los desarrolladores y estas son las razones
@@ -85,5 +87,44 @@ Un comando es un programa que se puede ejecutar desde la terminal.
 
 ## ¿Qué es un comando?
 
+Un comando puede ser lo siguiente:
 
+1. Un programa executable `mkdir`
+2. Un comando de utilidad para la shell `cd`
+3. Una función de shell 
+4. Un alias `ls`
+
+> 🔔 `type {comando}` Nos indica la naturaleza del comando como parámetro
+
+### Crear un alias
+
+Para crear un alias vamos usar la palabra reservada alias. `alias new_command = "{command}"`
+
+> ⚠Los comandos que creemos se borraran una vez cerremos la terminal en donde se crearon
+
+### Comandos informativos
+
+| Comando | Descripción |
+| :--- | :--- |
+| `help {command}` | Visualiza info sobre como usar el comando. |
+| `man {command}` | Visualiza el manual de usuario del comando |
+| `info {command}` | Visualiza el manual de usuario del comando de forma breve |
+| `whatis {command}` | Descripción muy corta de que hace el comando |
+
+## Wildcars
+
+Son una serie de caracteres especiales que nos permiten realizar búsquedas mucho más avanzadas.
+
+| Comando | Descripción |
+| :--- | :--- |
+| `ls *.txt` | Filtra por los archivos de la extensión `.txt` |
+| `ls datos*` | Filtra por los archivos que empiezan con el nombre `datos` |
+| `ls datos?` | Filtra por los archivos que empiezan con`datos` pero tiene **una** sola coincidencia |
+| `ls datos???` | Filtra por los archivos que empiezan con`datos` pero tiene **tres** coincidencias |
+| `ls [[:upper:]]*` | Filtra por los archivos que empiezan con mayúscula hasta dos niveles del árbol |
+| `ls -d [[:upper:]]*` | Filtra por los archivos que empiezan con mayúscula en el **mismo directorio** |
+| `ls [[:lower:]]*` | Filtra por los archivos que empiezan con minúscula |
+| `ls [ab]*` | Filtra por los archivos que empiezan por **a y b** |
+
+## Redirecciones: cómo funciona la shell
 
