@@ -128,3 +128,70 @@ Son una serie de caracteres especiales que nos permiten realizar búsquedas much
 
 ## Redirecciones: cómo funciona la shell
 
+En el diagrama vemos el standar input \(`stdin`\) que proviene del teclado pero también puede ser redirigido desde archivos de texto.
+
+![](../.gitbook/assets/image%20%2815%29.png)
+
+> 🔔 A los \# de los std se les conoce como **file descriptors.**
+
+Cuando el `stdin->(0)` entra dentro de nuestro comando puede resultar dos cosas, un `stdout->(1)` o un `stderr->(2)` y ambas salidas se manejan de forma distinta y así los interpreta la shell.
+
+| Standar | file descriptor | operator | variant |
+| :--- | :--- | :--- | :--- |
+| stdin | 0 | &gt; | &gt;&gt; |
+| stdout | 1 | &lt; |  |
+| stderr | 2 | 2 |  |
+
+### Comandos de la clase
+
+| Comando | Descripción |
+| :--- | :--- |
+| `ls {folder} > {archivo}` | Crea el archivo y almacena el `stdout` en el archivo |
+| `ls {folder} >> {archivo}` | No sobreescribe el archivo, concatena con lo que tenga almacenado |
+| `ls {folder} 2> {archivo}` | Si se genera un error, redirige el `stderr` al archivo |
+| `ls {folder} > {archivo} 2>&1` | Redirige el`stderr` o el `stdout` según lo que genere la ejecución del comando |
+
+## Redirecciones: pipe operator
+
+El _`pipe operator`_`|`  permite pasar el `stdout` de un comando al `stdin` de otro comando, esto permite generar filtros, encadenamientos o funcionalidades. Ej: `ls -lh | less`
+
+| Comando | Descripcion |
+| :--- | :--- |
+| `echo "Hola mundo"` | Imprime en consola `"Hola mundo"` |
+| `cat {archivo}` | Imprime en consola el contenido del archivo |
+| `ls | tee {archivo} | less` | Redirecciona el `stdout` al archivo y visualiza con `less` |
+| `ls | sort` | Ordena el `stdout` de `ls` |
+
+## Encadenando comandos: operadores de control
+
+Son símbolos reservados por la terminal que permiten ejecutar más de un comando o encadenarlos, podemos ejecutarlos síncronamente, asíncronamente e incluso con condicionales.
+
+### Síncrono
+
+Para indicar que los comandos se ejecuten de forma síncrona se usa el operador `;`
+
+`ls; mkdir {folder}; cal`
+
+### Asíncrono
+
+Para indicar que los comandos se ejecuten de forma asíncrona se usa el operador `&`
+
+`ls & date & cal`
+
+### Condicional
+
+* `mkdir {folder} && cd {folder}` 
+* `cd {folder} || echo "Hola Mundo"`
+
+## Cómo se manejan los permisos
+
+
+
+
+
+
+
+\`\`
+
+
+
