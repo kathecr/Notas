@@ -185,13 +185,55 @@ Para indicar que los comandos se ejecuten de forma asíncrona se usa el operador
 
 ## Cómo se manejan los permisos
 
+### Tipos de archivos
 
+| Atributo | Tipo de archivo |
+| :--- | :--- |
+| - | Un archivo normal |
+| d | Un directorio |
+| l | Un link simbólico |
+| d | Un archivo de bloque especial. Son archivos que manejan la información de los bloques de datos como una USB |
 
+### Tipo de modo
 
+* Dueño: La persona que crea el archivo **\(rwx\)**
+* Grupo: Puede ser compartido entre diferentes usuarios \(r-x\)
+* World: Cualquiera que no entre en la categoría de dueño o grupo **\(r-x\)**
 
+#### Diferencia de permisos entre archivos y directorios
 
+| Permiso | Archivo | Directorio |
+| :--- | :--- | :--- |
+| r | Permite abrir y leer un archivo. | Permite listar el contenido de un directorio solo si el permiso de ejecución \(x\) también está activo. |
+| w | Permite escribir en un archivo; sin embargo, este atributo no permite cambiar el nombre de los archivos o eliminarlos. La capacidad de eliminar o cambiar el nombre de los archivos está determinado por los atributos del directorio. | Permite que los archivos dentro de un directorio sean creados, eliminados y renombrados si también se establece el atributo de ejecución. |
+| x | Permite que un archivo sea tratado como un programa y pueda ser ejecutado. | Permite entrar al directorio |
 
-\`\`
+### Modo Octal
 
+![](../.gitbook/assets/image%20%2817%29.png)
 
+### Modo Simbólico
+
+![](../.gitbook/assets/image%20%2816%29.png)
+
+## Modificando permisos en la terminal
+
+El usuario `root` tiene privilegios para hacer prácticamente todo y por esto debemos aprender a manejarlo de forma adecuada. 
+
+Para modificar los permisos de un archivo o directorio usamos `chmod`
+
+* Cambiando permisos en modo octal: `chmod 755 {archivo}`
+* Quitando permiso de lectura al usuario con modo simbólico: `chmod u-r {archivo}` 
+* Añadiendo permiso de lectura al usuario con modo simbólico: `chmod u+r {archivo}` 
+* Quitar permiso de ejecución al usuario y añadiendo permiso de escritura al grupo y al resto: `chmod u-x,go=w {archivo}` 
+* \`\`
+
+### Comandos de la Clase
+
+| Comando | Descripción |
+| :--- | :--- |
+| `whoami` | Nos dice que usuario somos |
+| `id` | Nos dice el `uid` que es el sistema de nuestro usuario, además nos da información de que otros grupos podemos pertenecer. |
+| `su {usuario}` | Realiza el Switch User que nos permite cambiar entre los usuarios que tengamos registrados |
+| `sudo` |  |
 
