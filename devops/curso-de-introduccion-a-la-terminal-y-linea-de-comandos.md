@@ -235,5 +235,91 @@ Para modificar los permisos de un archivo o directorio usamos `chmod`
 | `whoami` | Nos dice que usuario somos |
 | `id` | Nos dice el `uid` que es el sistema de nuestro usuario, además nos da información de que otros grupos podemos pertenecer. |
 | `su {usuario}` | Realiza el Switch User que nos permite cambiar entre los usuarios que tengamos registrados |
-| `sudo` |  |
+| `sudo` | Nos permite hacer acciones de `root` |
+| `passwd` | Nos permite cambiar la contraseña |
+
+## Variables de entorno
+
+### Comandos de la clase
+
+| Comando | Descripción |
+| :--- | :--- |
+| `prinenv` | Nos muestra todas las variables de entorno que tenemos configuradas |
+| `echo ${variable_entorno}` | Imprime el contenido de la variable |
+
+En `.bashrc` es el archivo que contiene toda la configuración, variables y alias lo encontramos como
+
+#### Bonus - Crear un link simbólico
+
+`ls -s {PATH} {name_link}`
+
+## Comandos de Búsqueda
+
+Nos ayudan a encontrar archivos o directorios y podemos filtrarlos dependiendo su extensión, su nombre, su ubicación etc.
+
+{% hint style="info" %}
+Esto es realmente util cuando queremos encontrar archivos `.log`  los cuales son archivos de texto plano que recopilan la información de un archivo en ejecución.
+{% endhint %}
+
+### Comandos de la clase
+
+| Comando | Descripción |
+| :--- | :--- |
+| `which {bin}` | Nos muestra la ruta donde se almacena el binario |
+| `find {patch} -name {name}` | Busca los files con el nombre indicado en la ruta indicada |
+| `find {path} -type d -name {name}` | Busca los directorios \(d\) con el nombre y la ruta indicada  |
+| `find {path} -type f -name *.log` | Busca los archivos \(f\) .log en la ruta indicada |
+| `find {patch} -size 20M` | Busca los archivos que pesen más de 20Mb |
+
+## Grep
+
+Nos permite encontrar coincidencias de una búsqueda dentro de un archivo .txt  o en general de cualquier texto, por ejemplo un `stdout` 
+
+* Encontrar las coincidencias de un archivo:  
+  * `grep {expReg} {file}`
+
+| Opciones de grep | Descripción |
+| :--- | :--- |
+| `-i` | No case sensitive |
+| `-c` | Número de coincidencias |
+| `-v` | \#de no coincidencias |
+
+`Ejemplo: grep -v {expReg} {file}`
+
+#### Bonus : Contador wc
+
+`Ejemplo: wc {file}`   -&gt; Contador de palabras, letras, bits
+
+| Opciones de wc | Descripción |
+| :--- | :--- |
+| `-l` | Cuenta las líneas |
+| `-w` | Cuenta las palabras |
+| `-c` | Cuenta los bits |
+
+## Utilidades de Red
+
+* **`ifconfig`**sirve para ver la mascara de red, puerto de transmisión, tarjeta de red, etc
+* **`ping`**nos muestra si una ip o pagina, esta activa, si salen paquetes es porque hay conexión.
+*  **`curl pagina_web`** podemos traer el html de una pagina, podríamos guardarlo con el estándar output.
+* **`wget pagina_web`** nos descarga el archivo html, pero con formato.
+* **`traceroute pagina_web`**nos sirve para ver por cuales computadoras tenemos que ir pasando para llegar por ejemplo a una pagina web. Ejemplo, nos saldrán las ip que tenemos que pasar para llegar a la pagina que queremos.
+* **`netstat –i`** nos muestra los dispositivos de red.
+
+## Comprimiendo archivos
+
+| Comando  | Descripción |
+| :--- | :--- |
+| `tar -cvf {name}.tar {file}` | Comprime el archivo en formato tar -&gt; c: comprimir, v:ver en terminal, f:file |
+| `tar -cvzf {name}.tar.gz {file}` | Comprime el archivo con el algoritmo `gzip` -&gt; z |
+| `tar -xvzf {folcer}.tar.gz` | Descomprime el archivo -&gt; x:descomprimir |
+| `zip -r {name}.zip {folder}` | Comprime en formato `.zip` |
+| `unzip {name}.zip` | Descomprime un archivo `.zip` |
+
+## Manejo de Procesos
+
+| Comando  | Descripción |
+| :--- | :--- |
+| `ps` | Muestra los procesos corriendo en nuestra terminal. Todo proceso tiene un ID. |
+| `kill {PID}` | Mata un proceso con el ID del proceso |
+| `top` | Muestra los procesos que están usando más recursos. |
 
