@@ -323,3 +323,29 @@ Nos permite encontrar coincidencias de una búsqueda dentro de un archivo .txt  
 | `kill {PID}` | Mata un proceso con el ID del proceso |
 | `top` | Muestra los procesos que están usando más recursos. |
 
+## Procesos en background y foreground
+
+[Link de lectura de Platzi](https://platzi.com/clases/2292-terminal/37619-procesos-en-foreground-y-background/)
+
+| Comando | Descripción |
+| :--- | :--- |
+| `Crtl+Z` | Suspende un proceso que se esta ejecutando en el foreground |
+| `jobs` | Muestra los procesos que estan en el background |
+| `fg {#job}` | Trae un proceso al foreground |
+| `bg {#job}` | Envía un proceso al background sin suspenderlo |
+
+## Editores de texto en la terminal
+
+Dentro de la terminal podemos usar editores de texto como `nano`, `ecmas` y el más popular`vim` 
+
+### `Comandos de Vim`
+
+| Comando  | Descripción |
+| :--- | :--- |
+| `vim {archivo}` | Abre el archivo en el editor de texto |
+| `:q` | Cierra el editor de texto |
+| `:w` | Guarda |
+| `i` | Accede al modo `INSERT` |
+| `esc` | Retorna al modo `NORMAL` |
+| `dd` | En el modo `NORMAL` elimina toda una fila |
+
